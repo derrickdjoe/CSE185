@@ -1,0 +1,46 @@
+
+img1 = im2double(imread('lena_noisy.jpg'));
+img2 = im2double(imread('lena.jpg'));
+% 
+% 
+%% Median filter
+patch_size = [3, 3];
+img_median = median_filter(img2, patch_size);
+imwrite(img_median, 'median_3.jpg');
+imwrite(medfilt2(img2, patch_size), 'mediantest.jpg');
+
+patch_size = [5, 5];
+img_median = median_filter(img2, patch_size);
+imwrite(img_median, 'median_5.jpg');
+imwrite(medfilt2(img2, patch_size), 'mediantest1.jpg');
+
+patch_size = [3, 3];
+img_median = median_filter_pad(img2, patch_size, 1);
+imwrite(img_median, 'median_pad.jpg');
+
+patch_size = [3, 3];
+img_median = median_filter_pad(img2, patch_size, 2);
+imwrite(img_median, 'median_pad1.jpg');
+
+
+%% Sobel filter
+H = [1, 2, 1; 0, 0, 0; -1, -2, -1]; % horizontal edge
+img_sobel = sobel_filter(img2, H);
+imwrite(img_sobel, 'sobel_h.jpg');
+imwrite(imfilter(img2, H), 'sobelhtest.jpg');
+
+V = [1, 0, -1; 2, 0, -2; 1, 0, -1]; % vertical edge
+img_sobel1 = sobel_filter(img2, V);
+imwrite(img_sobel1, 'sobel_v.jpg');
+imwrite(imfilter(img2, V), 'sobelvtest.jpg');
+
+
+
+%% Gaussian filter
+hsize = 5; sigma = 2;
+img_g = gaussian_filter(img2, hsize, sigma);
+imwrite(img_g, 'gauss1.jpg');
+imwrite(imfilter(img2, H), 'gassreal.jpg');
+hsize = 9; sigma = 4;
+img_g = gaussian_filter(img2, hsize,
+
